@@ -113,6 +113,44 @@
         transition: .8s ease;
     }
 
+    .back-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: #ffffff;
+    padding: 10px 16px;
+    border-radius: 12px;
+    font-size: 16px;
+    color: #333;
+    text-decoration: none;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    font-weight: 600;
+    transition: 0.2s ease;
+}
+
+.back-btn .icon {
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.back-btn:hover {
+    background: #f3f3f3;
+    transform: translateY(-2px);
+    box-shadow: 0 8px 18px rgba(0,0,0,0.15);
+}
+
+@media (max-width: 480px) {
+    .back-btn {
+        font-size: 15px;
+        padding: 10px 14px;
+        border-radius: 10px;
+    }
+    .back-btn .icon {
+        font-size: 17px;
+    }
+}
+
+
     /* ---------------- MENU PAGE ---------------- */
 
     .menu-page {
@@ -305,7 +343,7 @@
         setTimeout(() => {
             document.getElementById("cardPage").classList.add("hidden");
             document.getElementById("menuPage").classList.remove("hidden");
-        }, 6100);
+        }, 5000);
     };
 
 
