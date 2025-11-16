@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<title>DPM FILKOM UB – Maroon Gold</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+<style>
+
+    :root {
+        --gold: #D4AF37;      
+        --gold-deep: #B68F2A;  
+        --gold-soft: rgba(212,175,55,0.35);
+        --gold-highlight: #E2C46F;
+    }
+
+    body {
+        margin: 0;
+        padding: 0;
+        font-family: "Poppins", sans-serif;
+        background: linear-gradient(180deg, #4a0c0c 0%, #2b0707 100%);
+        height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        color: #ffffff;
+    }
+
+    .card-page {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+    }
+
+    .hidden {
+        display: none !important;
+    }
+
+    .card {
+        width: 380px;
+        text-align: center;
+        background: rgba(255,255,255,0.04);
+        padding: 40px;
+        border-radius: 25px;
+        border: 2px solid var(--gold-soft);
+        backdrop-filter: blur(8px);
+        box-shadow: 0 0 20px rgba(212,175,55,0.18);
+        animation: fadeIn 1.5s ease;
+    }
+
+    .number {
+        font-size: 95px;
+        font-weight: 700;
+        color: var(--gold-highlight);
+        text-shadow: 0 0 12px rgba(212,175,55,0.35);
+        animation: glow 3s ease infinite;
+    }
+
+    .photo-container {
+        width: 180px;
+        height: 180px;
+        border-radius: 100%;
+        border: 4px solid var(--gold);
+        overflow: hidden;
+        margin: 25px auto;
+        box-shadow: 0 0 15px rgba(212,175,55,0.3);
+        animation: popUp 1.4s ease;
+    }
+
+    .photo-container img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+
+    .name {
+        font-size: 26px;
+        font-weight: 700;
+        margin-top: 10px;
+        opacity: 0;
+        transform: translateY(-2px);
+        transition: .8s ease;
+    }
+
+    .major {
+        font-size: 16px;
+        opacity: 0.9;
+        margin-top: 5px;
+        color: var(--gold);
+    }
+
+    .badge {
+        display: inline-block;
+        margin-top: 25px;
+        padding: 14px 22px;
+        background: var(--gold);
+        color: #3c0a0c;
+        border-radius: 25px;
+        font-weight: 600;
+        font-size: 15px;
+        box-shadow: 0 0 18px rgba(212,175,55,0.40);
+        animation: fadeIn 2s ease;
+        transition: 0.3s;
+    }
+
+    .menu-page {
+        text-align: center;
+        animation: fadeIn 1s ease;
+    }
+
+    .menu-title {
+        font-size: 36px;
+        color: #ffd700;
+        font-weight: 700;
+        margin-bottom: 40px;
+    }
+
+    .menu-btn {
+        background: #D4AF37;
+        color: #4a0c0c;
+        border: none;
+        padding: 18px 45px;
+        margin: 10px;
+        border-radius: 40px;
+        cursor: pointer;
+        font-size: 20px;
+        font-weight: 600;
+        transition: .3s;
+    }
+
+    .content-page {
+        max-width: 800px;
+        width: 90%;
+        background: #fff;
+        color: #4a0c0c;
+        padding: 25px 35px;
+        border-radius: 20px;
+        box-shadow: 0 0 30px rgba(0,0,0,0.3);
+        animation: fadeIn 1s ease;
+        text-align: justify;
+        max-height: 85vh;
+        overflow: hidden;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .content-title {
+        font-size: 36px;
+        font-weight: 700;
+        color: #4a0c0c;
+        margin-bottom: 15px;
+        text-align: center;
+    }
+
+    .scroll-box {
+        overflow-y: auto;
+        padding-right: 10px;
+        flex-grow: 1;
+    }
+
+    .scroll-box::-webkit-scrollbar {
+        width: 8px;
+    }
+    .scroll-box::-webkit-scrollbar-thumb {
+        background: var(--gold-deep);
+        border-radius: 10px;
+    }
+
+    .back-btn {
+        margin-top: 20px;
+        padding: 12px 30px;
+        background: #4a0c0c;
+        color: #ffd700;
+        border: none;
+        border-radius: 25px;
+        cursor: pointer;
+        font-weight: 600;
+    }
+
+    .misi-item {
+        opacity: 0;
+        transform: translateY(12px);
+        transition: 0.6s ease;
+        margin-bottom: 18px;
+        line-height: 1.55;
+    }
+
+    .misi-item.show {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+    @keyframes fadeIn { from {opacity:0;} to {opacity:1;} }
+
+</style>
+</head>
+<body>
+
+<div class="card-page" id="cardPage">
+    <div class="card" id="card">
+
+        <div class="number" id="number">05</div>
+
+        <div class="photo-container" id="photo">
+            <img src="pemilwa.jpg">
+        </div>
+
+        <div class="name" id="name">Septian Nuril Arifin</div>
+        <div class="major" id="major">Program Studi Teknologi Informasi</div>
+
+        <div class="badge" id="badge">Calon DPM FILKOM UB</div>
+    </div>
+</div>
+
+<div class="menu-page hidden" id="menuPage">
+    <div class="menu-title">Pilih Program Saya</div>
+    <button class="menu-btn" onclick="showContent('visi')">📌 VISI</button>
+    <button class="menu-btn" onclick="showContent('misi')">🎯 MISI</button>
+</div>
+
+<div class="content-page hidden" id="visiPage">
+    <div class="content-title">VISI</div>
+
+    <div class="scroll-box">
+        <p>
+            Mewujudkan Dewan Perwakilan Mahasiswa Fakultas yang transparan, aspiratif, dan berintegritas, 
+            sebagai wadah representatif mahasiswa yang memperjuangkan aspirasi, serta membangun budaya 
+            organisasi yang terbuka, partisipatif, dan berorientasi pada kemajuan bersama.
+        </p>
+    </div>
+
+    <button class="back-btn" onclick="backToMenu()">← Kembali</button>
+</div>
+
+<div class="content-page hidden" id="misiPage">
+    <div class="content-title">MISI</div>
+
+    <div class="scroll-box" id="misiList">
+
+        <div class="misi-item">Menegakkan prinsip transparansi dan akuntabilitas dalam setiap kegiatan dan keputusan DPM melalui publikasi laporan, hasil sidang, dan media digital informatif.</div>
+
+        <div class="misi-item">Membangun sistem penyaluran aspirasi mahasiswa yang responsif melalui forum terbuka, survei digital, dan tindak lanjut yang jelas.</div>
+
+        <div class="misi-item">Mengoptimalkan fungsi pengawasan DPM terhadap lembaga eksekutif mahasiswa secara konstruktif dan berkeadilan.</div>
+
+        <div class="misi-item">Mendorong partisipasi aktif mahasiswa dalam proses pengambilan keputusan kampus melalui diskusi publik dan sosialisasi kebijakan.</div>
+
+        <div class="misi-item">Menumbuhkan budaya organisasi yang kolaboratif, profesional, dan berintegritas dengan menekankan nilai kejujuran dan tanggung jawab.</div>
+
+        <div class="misi-item">Membangun hubungan komunikatif antara mahasiswa, dosen, dan fakultas untuk menciptakan lingkungan akademik yang demokratis.</div>
+
+    </div>
+
+    <button class="back-btn" onclick="backToMenu()">← Kembali</button>
+</div>
+
+<script>
+
+    window.onload = () => {
+        const c = id => document.getElementById(id);
+
+        setTimeout(() => { c("card").style.opacity = "1"; }, 200);
+        setTimeout(() => { c("number").style.opacity = "1"; }, 500);
+        setTimeout(() => { c("photo").style.opacity = "1"; }, 900);
+        setTimeout(() => { c("name").style.opacity = "1"; }, 1200);
+        setTimeout(() => { c("major").style.opacity = "1"; }, 1400);
+        setTimeout(() => { c("badge").style.opacity = "1"; }, 1600);
+    };
+
+    setTimeout(() => {
+        document.getElementById("cardPage").classList.add("hidden");
+        document.getElementById("menuPage").classList.remove("hidden");
+    }, 5000);
+
+    function showContent(type) {
+        document.getElementById("menuPage").classList.add("hidden");
+
+        if (type === "visi") {
+            document.getElementById("visiPage").classList.remove("hidden");
+        }
+
+        if (type === "misi") {
+            document.getElementById("misiPage").classList.remove("hidden");
+
+            const items = document.querySelectorAll(".misi-item");
+            items.forEach((item, index) => {
+                setTimeout(() => {
+                    item.classList.add("show");
+                }, 300 * index);
+            });
+        }
+    }
+
+    function backToMenu() {
+        document.getElementById("visiPage").classList.add("hidden");
+        document.getElementById("misiPage").classList.add("hidden");
+        document.getElementById("menuPage").classList.remove("hidden");
+
+        document.querySelectorAll(".misi-item").forEach(item => {
+            item.classList.remove("show");
+        });
+    }
+
+</script>
+
+</body>
+</html>
