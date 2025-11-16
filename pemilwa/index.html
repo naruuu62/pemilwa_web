@@ -2,6 +2,7 @@
 <html lang="id">
 <head>
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>DPM FILKOM UB – Maroon Gold</title>
 
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
@@ -9,18 +10,18 @@
 <style>
 
     :root {
-        --gold: #D4AF37;      
-        --gold-deep: #B68F2A;  
+        --gold: #D4AF37;
+        --gold-deep: #B68F2A;
         --gold-soft: rgba(212,175,55,0.35);
         --gold-highlight: #E2C46F;
     }
 
     body {
         margin: 0;
-        padding: 0;
+        padding: 30px 0;
         font-family: "Poppins", sans-serif;
         background: linear-gradient(180deg, #4a0c0c 0%, #2b0707 100%);
-        height: 100vh;
+        min-height: 100vh;
         display: flex;
         justify-content: center;
         align-items: center;
@@ -38,8 +39,11 @@
         display: none !important;
     }
 
+    /* ---------------- CARD ---------------- */
+
     .card {
-        width: 380px;
+        width: 90%;
+        max-width: 420px;
         text-align: center;
         background: rgba(255,255,255,0.04);
         padding: 40px;
@@ -62,8 +66,8 @@
     }
 
     .photo-container {
-        width: 180px;
-        height: 180px;
+        width: 200px;
+        height: 200px;
         border-radius: 100%;
         border: 4px solid var(--gold);
         overflow: hidden;
@@ -80,7 +84,7 @@
     }
 
     .name {
-        font-size: 26px;
+        font-size: 28px;
         font-weight: 700;
         margin-top: 10px;
         opacity: 0;
@@ -88,7 +92,7 @@
     }
 
     .major {
-        font-size: 16px;
+        font-size: 17px;
         opacity: 0;
         margin-top: 5px;
         color: var(--gold);
@@ -98,16 +102,18 @@
     .badge {
         display: inline-block;
         margin-top: 25px;
-        padding: 14px 22px;
+        padding: 15px 22px;
         background: var(--gold);
         color: #3c0a0c;
         border-radius: 25px;
         font-weight: 600;
-        font-size: 15px;
+        font-size: 17px;
         box-shadow: 0 0 18px rgba(212,175,55,0.40);
         opacity: 0;
         transition: .8s ease;
     }
+
+    /* ---------------- MENU PAGE ---------------- */
 
     .menu-page {
         text-align: center;
@@ -133,6 +139,8 @@
         font-weight: 600;
         transition: .3s;
     }
+
+    /* ---------------- CONTENT PAGE ---------------- */
 
     .content-page {
         max-width: 800px;
@@ -176,7 +184,42 @@
         transform: translateY(0);
     }
 
+    /* ---------------- MOBILE RESPONSIVE ---------------- */
+
+    @media (max-width: 480px) {
+
+        .card {
+            padding: 35px 22px;
+        }
+
+        .number {
+            font-size: 80px;
+        }
+
+        .photo-container {
+            width: 170px;
+            height: 170px;
+        }
+
+        .name {
+            font-size: 24px;
+        }
+
+        .major {
+            font-size: 14px;
+        }
+
+        .badge {
+            font-size: 14px;
+            padding: 12px 20px;
+        }
+
+    }
+
+    /* ---------------- ANIMATIONS ---------------- */
+
     @keyframes fadeIn { from {opacity:0;} to {opacity:1;} }
+
     @keyframes glow {
         0%, 100% { text-shadow: 0 0 15px rgba(212,175,55,0.4); }
         50% { text-shadow: 0 0 28px rgba(212,175,55,0.8); }
@@ -213,8 +256,8 @@
 
     <div class="scroll-box">
         <p>
-            Mewujudkan Dewan Perwakilan Mahasiswa Fakultas yang transparan, aspiratif, dan berintegritas, 
-            sebagai wadah representatif mahasiswa yang memperjuangkan aspirasi, serta membangun budaya 
+            Mewujudkan Dewan Perwakilan Mahasiswa Fakultas yang transparan, aspiratif, dan berintegritas,
+            sebagai wadah representatif mahasiswa yang memperjuangkan aspirasi, serta membangun budaya
             organisasi yang terbuka, partisipatif, dan berorientasi pada kemajuan bersama.
         </p>
     </div>
@@ -246,12 +289,11 @@
 
 <script>
 
-    // JALANKAN SAAT FOTO SELESAI DIMUAT
+    // Animasi masuk card
     document.getElementById("profileImg").onload = () => {
 
         const c = id => document.getElementById(id);
 
-        // Animasi masuk satu per satu
         setTimeout(() => { c("card").style.opacity = "1"; }, 200);
         setTimeout(() => { c("number").style.opacity = "1"; }, 500);
         setTimeout(() => { c("photo").style.opacity = "1"; }, 900);
@@ -259,7 +301,7 @@
         setTimeout(() => { c("major").style.opacity = "1"; }, 1400);
         setTimeout(() => { c("badge").style.opacity = "1"; }, 1600);
 
-        // Pindah halaman SESUDAH foto + animasi selesai
+        // Pindah halaman
         setTimeout(() => {
             document.getElementById("cardPage").classList.add("hidden");
             document.getElementById("menuPage").classList.remove("hidden");
