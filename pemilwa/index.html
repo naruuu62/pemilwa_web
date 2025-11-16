@@ -1,8 +1,9 @@
+bikin dia responsif dong menyesuaikan sama ukuran layar 
 <!DOCTYPE html>
 <html lang="id">
 <head>
 <meta charset="UTF-8">
-<title>DPM FILKOM UB – Responsive Maroon Gold</title>
+<title>DPM FILKOM UB – Maroon Gold</title>
 
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
 
@@ -10,6 +11,7 @@
 
     :root {
         --gold: #D4AF37;      
+        --gold-deep: #B68F2A;  
         --gold-soft: rgba(212,175,55,0.35);
         --gold-highlight: #E2C46F;
     }
@@ -26,50 +28,47 @@
         color: #ffffff;
     }
 
-    .card-page, .menu-page {
-        width: 100%;
+    .card-page {
         display: flex;
         justify-content: center;
         align-items: center;
-        padding: 15px;
+        width: 100%;
     }
 
     .hidden {
         display: none !important;
     }
 
-    /* ===========================
-       CARD (PAGE 1)
-       =========================== */
     .card {
-        width: min(90%, 380px);
+        width: 380px;
         text-align: center;
         background: rgba(255,255,255,0.04);
-        padding: 30px;
-        border-radius: 20px;
+        padding: 40px;
+        border-radius: 25px;
         border: 2px solid var(--gold-soft);
         backdrop-filter: blur(8px);
         box-shadow: 0 0 20px rgba(212,175,55,0.18);
         opacity: 0;
-        transition: .8s ease;
+        transition: 1s ease;
     }
 
     .number {
-        font-size: clamp(55px, 10vw, 100px);
+        font-size: 95px;
         font-weight: 700;
         color: var(--gold-highlight);
         text-shadow: 0 0 12px rgba(212,175,55,0.35);
         opacity: 0;
         transition: .8s ease;
+        animation: glow 3s ease infinite;
     }
 
     .photo-container {
-        width: clamp(110px, 40vw, 180px);
-        height: clamp(110px, 40vw, 180px);
+        width: 180px;
+        height: 180px;
         border-radius: 100%;
         border: 4px solid var(--gold);
         overflow: hidden;
-        margin: 20px auto;
+        margin: 25px auto;
         box-shadow: 0 0 15px rgba(212,175,55,0.3);
         opacity: 0;
         transition: .8s ease;
@@ -82,7 +81,7 @@
     }
 
     .name {
-        font-size: clamp(20px, 5vw, 28px);
+        font-size: 26px;
         font-weight: 700;
         margin-top: 10px;
         opacity: 0;
@@ -90,7 +89,7 @@
     }
 
     .major {
-        font-size: clamp(13px, 3.5vw, 18px);
+        font-size: 16px;
         opacity: 0;
         margin-top: 5px;
         color: var(--gold);
@@ -99,64 +98,60 @@
 
     .badge {
         display: inline-block;
-        margin-top: 20px;
-        padding: 12px 20px;
+        margin-top: 25px;
+        padding: 14px 22px;
         background: var(--gold);
         color: #3c0a0c;
         border-radius: 25px;
         font-weight: 600;
-        font-size: clamp(13px, 3.5vw, 18px);
+        font-size: 15px;
         box-shadow: 0 0 18px rgba(212,175,55,0.40);
         opacity: 0;
         transition: .8s ease;
     }
 
-    /* ============================
-       MENU PAGE
-       ============================ */
-    .menu-title {
-        font-size: clamp(26px, 7vw, 40px);
-        color: var(--gold-highlight);
-        font-weight: 700;
-        margin-bottom: 30px;
+    .menu-page {
         text-align: center;
+        animation: fadeIn 1s ease;
+    }
+
+    .menu-title {
+        font-size: 36px;
+        color: #ffd700;
+        font-weight: 700;
+        margin-bottom: 40px;
     }
 
     .menu-btn {
-        background: var(--gold);
+        background: #D4AF37;
         color: #4a0c0c;
         border: none;
-        padding: 15px 40px;
+        padding: 18px 45px;
         margin: 10px;
         border-radius: 40px;
         cursor: pointer;
-        font-size: clamp(18px, 4.5vw, 22px);
+        font-size: 20px;
         font-weight: 600;
         transition: .3s;
-        width: min(80%, 300px);
     }
 
-    /* ==============================
-       CONTENT PAGE (VISI – MISI)
-       ============================== */
     .content-page {
         max-width: 800px;
-        width: 92%;
+        width: 90%;
         background: #fff;
         color: #4a0c0c;
-        padding: 20px 25px;
+        padding: 25px 35px;
         border-radius: 20px;
-        box-shadow: 0 0 25px rgba(0,0,0,0.25);
+        box-shadow: 0 0 30px rgba(0,0,0,0.3);
         animation: fadeIn 1s ease;
         text-align: justify;
-        max-height: 88vh;
+        max-height: 85vh;
         overflow: hidden;
-        display: flex;
         flex-direction: column;
     }
 
     .content-title {
-        font-size: clamp(26px, 6vw, 38px);
+        font-size: 36px;
         font-weight: 700;
         color: #4a0c0c;
         margin-bottom: 15px;
@@ -167,15 +162,14 @@
         overflow-y: auto;
         padding-right: 10px;
         flex-grow: 1;
-        font-size: clamp(15px, 4vw, 18px);
-        line-height: 1.55;
     }
 
     .misi-item {
         opacity: 0;
         transform: translateY(12px);
         transition: 0.6s ease;
-        margin-bottom: 16px;
+        margin-bottom: 18px;
+        line-height: 1.55;
     }
 
     .misi-item.show {
@@ -183,83 +177,16 @@
         transform: translateY(0);
     }
 
-    .back-btn {
-        margin-top: 15px;
-        padding: 12px 20px;
-        font-size: clamp(15px, 4vw, 18px);
-        background: #4a0c0c;
-        color: #fff;
-        border: none;
-        border-radius: 10px;
-    }
-
-    @keyframes fadeIn {
-        from { opacity:0; }
-        to { opacity:1; }
-    }
-
-
-    /* =====================================================
-       📱 RESPONSIVE MODE FOR HP (fix tampilan jadi kecil)
-       ===================================================== */
-    @media (max-width: 480px) {
-
-        body {
-            height: auto;
-            padding: 25px 0;
-        }
-
-        .card {
-            width: 94%;
-            padding: 25px;
-        }
-
-        .number {
-            font-size: 60px;
-        }
-
-        .photo-container {
-            width: 130px;
-            height: 130px;
-        }
-
-        .name {
-            font-size: 20px;
-        }
-
-        .major {
-            font-size: 14px;
-        }
-
-        .badge {
-            font-size: 14px;
-            padding: 10px 18px;
-        }
-
-        .menu-title {
-            margin-top: 20px;
-        }
-
-        .content-page {
-            width: 94%;
-            padding: 18px;
-        }
-
-        .content-title {
-            font-size: 22px;
-        }
-
-        .misi-item {
-            font-size: 14px;
-        }
+    @keyframes fadeIn { from {opacity:0;} to {opacity:1;} }
+    @keyframes glow {
+        0%, 100% { text-shadow: 0 0 15px rgba(212,175,55,0.4); }
+        50% { text-shadow: 0 0 28px rgba(212,175,55,0.8); }
     }
 
 </style>
 </head>
-
 <body>
 
-<!-- ====== PAGE 1 ====== -->
 <div class="card-page" id="cardPage">
     <div class="card" id="card">
 
@@ -276,48 +203,56 @@
     </div>
 </div>
 
-<!-- ====== MENU PAGE ====== -->
 <div class="menu-page hidden" id="menuPage">
     <div class="menu-title">Pilih Program Saya</div>
     <button class="menu-btn" onclick="showContent('visi')">📌 VISI</button>
     <button class="menu-btn" onclick="showContent('misi')">🎯 MISI</button>
 </div>
 
-<!-- ====== VISI PAGE ====== -->
 <div class="content-page hidden" id="visiPage">
     <div class="content-title">VISI</div>
 
     <div class="scroll-box">
         <p>
-            Mewujudkan Dewan Perwakilan Mahasiswa Fakultas yang transparan, aspiratif, dan berintegritas...
+            Mewujudkan Dewan Perwakilan Mahasiswa Fakultas yang transparan, aspiratif, dan berintegritas, 
+            sebagai wadah representatif mahasiswa yang memperjuangkan aspirasi, serta membangun budaya 
+            organisasi yang terbuka, partisipatif, dan berorientasi pada kemajuan bersama.
         </p>
     </div>
 
     <button class="back-btn" onclick="backToMenu()">← Kembali</button>
 </div>
 
-<!-- ====== MISI PAGE ====== -->
 <div class="content-page hidden" id="misiPage">
     <div class="content-title">MISI</div>
 
     <div class="scroll-box" id="misiList">
-        <div class="misi-item">Menegakkan prinsip transparansi...</div>
-        <div class="misi-item">Membangun sistem penyaluran aspirasi...</div>
-        <div class="misi-item">Mengoptimalkan fungsi pengawasan...</div>
-        <div class="misi-item">Mendorong partisipasi aktif mahasiswa...</div>
-        <div class="misi-item">Menumbuhkan budaya organisasi...</div>
-        <div class="misi-item">Membangun hubungan komunikatif...</div>
+
+        <div class="misi-item">Menegakkan prinsip transparansi dan akuntabilitas dalam setiap kegiatan dan keputusan DPM melalui publikasi laporan, hasil sidang, dan media digital informatif.</div>
+
+        <div class="misi-item">Membangun sistem penyaluran aspirasi mahasiswa yang responsif melalui forum terbuka, survei digital, dan tindak lanjut yang jelas.</div>
+
+        <div class="misi-item">Mengoptimalkan fungsi pengawasan DPM terhadap lembaga eksekutif mahasiswa secara konstruktif dan berkeadilan.</div>
+
+        <div class="misi-item">Mendorong partisipasi aktif mahasiswa dalam proses pengambilan keputusan kampus melalui diskusi publik dan sosialisasi kebijakan.</div>
+
+        <div class="misi-item">Menumbuhkan budaya organisasi yang kolaboratif, profesional, dan berintegritas dengan menekankan nilai kejujuran dan tanggung jawab.</div>
+
+        <div class="misi-item">Membangun hubungan komunikatif antara mahasiswa, dosen, dan fakultas untuk menciptakan lingkungan akademik yang demokratis.</div>
+
     </div>
 
     <button class="back-btn" onclick="backToMenu()">← Kembali</button>
 </div>
 
 <script>
-    // Animasi Page 1
+
+    // JALANKAN SAAT FOTO SELESAI DIMUAT
     document.getElementById("profileImg").onload = () => {
 
         const c = id => document.getElementById(id);
 
+        // Animasi masuk satu per satu
         setTimeout(() => { c("card").style.opacity = "1"; }, 200);
         setTimeout(() => { c("number").style.opacity = "1"; }, 500);
         setTimeout(() => { c("photo").style.opacity = "1"; }, 900);
@@ -325,18 +260,23 @@
         setTimeout(() => { c("major").style.opacity = "1"; }, 1400);
         setTimeout(() => { c("badge").style.opacity = "1"; }, 1600);
 
+        // Pindah halaman SESUDAH foto + animasi selesai
         setTimeout(() => {
             document.getElementById("cardPage").classList.add("hidden");
             document.getElementById("menuPage").classList.remove("hidden");
         }, 6100);
     };
 
+
+    // Navigasi
     function showContent(type) {
         document.getElementById("menuPage").classList.add("hidden");
 
         if (type === "visi") {
             document.getElementById("visiPage").classList.remove("hidden");
-        } else {
+        }
+
+        if (type === "misi") {
             document.getElementById("misiPage").classList.remove("hidden");
 
             const items = document.querySelectorAll(".misi-item");
@@ -353,6 +293,7 @@
 
         document.querySelectorAll(".misi-item").forEach(item => item.classList.remove("show"));
     }
+
 </script>
 
 </body>
