@@ -47,7 +47,8 @@
         border: 2px solid var(--gold-soft);
         backdrop-filter: blur(8px);
         box-shadow: 0 0 20px rgba(212,175,55,0.18);
-        animation: fadeIn 1.5s ease;
+        opacity: 0;
+        transition: 1s ease;
     }
 
     .number {
@@ -55,6 +56,8 @@
         font-weight: 700;
         color: var(--gold-highlight);
         text-shadow: 0 0 12px rgba(212,175,55,0.35);
+        opacity: 0;
+        transition: .8s ease;
         animation: glow 3s ease infinite;
     }
 
@@ -66,7 +69,8 @@
         overflow: hidden;
         margin: 25px auto;
         box-shadow: 0 0 15px rgba(212,175,55,0.3);
-        animation: popUp 1.4s ease;
+        opacity: 0;
+        transition: .8s ease;
     }
 
     .photo-container img {
@@ -80,15 +84,15 @@
         font-weight: 700;
         margin-top: 10px;
         opacity: 0;
-        transform: translateY(-2px);
         transition: .8s ease;
     }
 
     .major {
         font-size: 16px;
-        opacity: 0.9;
+        opacity: 0;
         margin-top: 5px;
         color: var(--gold);
+        transition: .8s ease;
     }
 
     .badge {
@@ -101,8 +105,8 @@
         font-weight: 600;
         font-size: 15px;
         box-shadow: 0 0 18px rgba(212,175,55,0.40);
-        animation: fadeIn 2s ease;
-        transition: 0.3s;
+        opacity: 0;
+        transition: .8s ease;
     }
 
     .menu-page {
@@ -142,7 +146,6 @@
         text-align: justify;
         max-height: 85vh;
         overflow: hidden;
-        display: flex;
         flex-direction: column;
     }
 
@@ -160,25 +163,6 @@
         flex-grow: 1;
     }
 
-    .scroll-box::-webkit-scrollbar {
-        width: 8px;
-    }
-    .scroll-box::-webkit-scrollbar-thumb {
-        background: var(--gold-deep);
-        border-radius: 10px;
-    }
-
-    .back-btn {
-        margin-top: 20px;
-        padding: 12px 30px;
-        background: #4a0c0c;
-        color: #ffd700;
-        border: none;
-        border-radius: 25px;
-        cursor: pointer;
-        font-weight: 600;
-    }
-
     .misi-item {
         opacity: 0;
         transform: translateY(12px);
@@ -193,6 +177,10 @@
     }
 
     @keyframes fadeIn { from {opacity:0;} to {opacity:1;} }
+    @keyframes glow {
+        0%, 100% { text-shadow: 0 0 15px rgba(212,175,55,0.4); }
+        50% { text-shadow: 0 0 28px rgba(212,175,55,0.8); }
+    }
 
 </style>
 </head>
@@ -204,7 +192,7 @@
         <div class="number" id="number">05</div>
 
         <div class="photo-container" id="photo">
-            <img src="pemilwa.JPG">
+            <img id="profileImg" src="pemilwa.JPG">
         </div>
 
         <div class="name" id="name">Septian Nuril Arifin</div>
@@ -258,22 +246,28 @@
 
 <script>
 
-    window.onload = () => {
+    // JALANKAN SAAT FOTO SELESAI DIMUAT
+    document.getElementById("profileImg").onload = () => {
+
         const c = id => document.getElementById(id);
 
+        // Animasi masuk satu per satu
         setTimeout(() => { c("card").style.opacity = "1"; }, 200);
         setTimeout(() => { c("number").style.opacity = "1"; }, 500);
         setTimeout(() => { c("photo").style.opacity = "1"; }, 900);
         setTimeout(() => { c("name").style.opacity = "1"; }, 1200);
         setTimeout(() => { c("major").style.opacity = "1"; }, 1400);
         setTimeout(() => { c("badge").style.opacity = "1"; }, 1600);
+
+        // Pindah halaman SESUDAH foto + animasi selesai
+        setTimeout(() => {
+            document.getElementById("cardPage").classList.add("hidden");
+            document.getElementById("menuPage").classList.remove("hidden");
+        }, 2500);
     };
 
-    setTimeout(() => {
-        document.getElementById("cardPage").classList.add("hidden");
-        document.getElementById("menuPage").classList.remove("hidden");
-    }, 5000);
 
+    // Navigasi
     function showContent(type) {
         document.getElementById("menuPage").classList.add("hidden");
 
@@ -286,9 +280,7 @@
 
             const items = document.querySelectorAll(".misi-item");
             items.forEach((item, index) => {
-                setTimeout(() => {
-                    item.classList.add("show");
-                }, 300 * index);
+                setTimeout(() => item.classList.add("show"), index * 250);
             });
         }
     }
@@ -298,9 +290,7 @@
         document.getElementById("misiPage").classList.add("hidden");
         document.getElementById("menuPage").classList.remove("hidden");
 
-        document.querySelectorAll(".misi-item").forEach(item => {
-            item.classList.remove("show");
-        });
+        document.querySelectorAll(".misi-item").forEach(item => item.classList.remove("show"));
     }
 
 </script>
