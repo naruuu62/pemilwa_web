@@ -99,6 +99,7 @@
         transition: .8s ease;
     }
 
+    /* BADGE JADI TOMBOL */
     .badge {
         display: inline-block;
         margin-top: 25px;
@@ -106,50 +107,46 @@
         background: var(--gold);
         color: #3c0a0c;
         border-radius: 25px;
-        font-weight: 600;
+        font-weight: 700;
         font-size: 17px;
         box-shadow: 0 0 18px rgba(212,175,55,0.40);
         opacity: 0;
-        transition: .8s ease;
+        transition: .3s;
+        cursor: pointer;
     }
+
+    .badge:hover {
+        transform: translateY(-3px);
+        background: var(--gold-highlight);
+    }
+
+    /* ---------------- BACK BUTTON ---------------- */
 
     .back-btn {
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    background: #ffffff;
-    padding: 10px 16px;
-    border-radius: 12px;
-    font-size: 16px;
-    color: #333;
-    text-decoration: none;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-    font-weight: 600;
-    transition: 0.2s ease;
-}
-
-.back-btn .icon {
-    font-size: 18px;
-    font-weight: bold;
-}
-
-.back-btn:hover {
-    background: #f3f3f3;
-    transform: translateY(-2px);
-    box-shadow: 0 8px 18px rgba(0,0,0,0.15);
-}
-
-@media (max-width: 480px) {
-    .back-btn {
-        font-size: 15px;
-        padding: 10px 14px;
-        border-radius: 10px;
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        background: #ffffff;
+        padding: 10px 16px;
+        border-radius: 12px;
+        font-size: 16px;
+        color: #333;
+        text-decoration: none;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        font-weight: 600;
+        transition: 0.2s ease;
+        position: sticky;
+        bottom: 8px;
+        margin-top: 15px;
+        align-self: center;
+        z-index: 10;
     }
-    .back-btn .icon {
-        font-size: 17px;
-    }
-}
 
+    .back-btn:hover {
+        background: #f3f3f3;
+        transform: translateY(-2px);
+        box-shadow: 0 8px 18px rgba(0,0,0,0.15);
+    }
 
     /* ---------------- MENU PAGE ---------------- */
 
@@ -190,9 +187,12 @@
         box-shadow: 0 0 30px rgba(0,0,0,0.3);
         animation: fadeIn 1s ease;
         text-align: justify;
+
+        display: flex;
+        flex-direction: column;
+
         max-height: 85vh;
         overflow: hidden;
-        flex-direction: column;
     }
 
     .content-title {
@@ -205,16 +205,26 @@
 
     .scroll-box {
         overflow-y: auto;
-        padding-right: 10px;
+        padding-right: 12px;
         flex-grow: 1;
+        max-height: calc(85vh - 120px);
     }
+
+    /* Scrollbar Gold */
+    .scroll-box::-webkit-scrollbar { width: 8px; }
+    .scroll-box::-webkit-scrollbar-track { background: #f0e3b4; border-radius: 10px; }
+    .scroll-box::-webkit-scrollbar-thumb { background: var(--gold); border-radius: 10px; }
+    .scroll-box::-webkit-scrollbar-thumb:hover { background: var(--gold-deep); }
+
+    /* ---------------- MISI ITEMS ---------------- */
 
     .misi-item {
         opacity: 0;
         transform: translateY(12px);
         transition: 0.6s ease;
-        margin-bottom: 18px;
-        line-height: 1.55;
+        margin-bottom: 20px;
+        line-height: 1.6;
+        font-size: 17px;
     }
 
     .misi-item.show {
@@ -222,7 +232,7 @@
         transform: translateY(0);
     }
 
-    /* ---------------- MOBILE RESPONSIVE ---------------- */
+    /* ---------------- RESPONSIVE ---------------- */
 
     @media (max-width: 480px) {
 
@@ -248,16 +258,13 @@
         }
 
         .badge {
-            font-size: 14px;
+            font-size: 15px;
             padding: 12px 20px;
         }
 
     }
 
-    /* ---------------- ANIMATIONS ---------------- */
-
     @keyframes fadeIn { from {opacity:0;} to {opacity:1;} }
-
     @keyframes glow {
         0%, 100% { text-shadow: 0 0 15px rgba(212,175,55,0.4); }
         50% { text-shadow: 0 0 28px rgba(212,175,55,0.8); }
@@ -279,7 +286,7 @@
         <div class="name" id="name">Septian Nuril Arifin</div>
         <div class="major" id="major">Program Studi Teknologi Informasi</div>
 
-        <div class="badge" id="badge">Calon DPM FILKOM UB</div>
+        <div class="badge" id="badge" onclick="goToMenu()">Calon DPM FILKOM UB</div>
     </div>
 </div>
 
@@ -327,7 +334,7 @@
 
 <script>
 
-    // Animasi masuk card
+  
     document.getElementById("profileImg").onload = () => {
 
         const c = id => document.getElementById(id);
@@ -338,16 +345,14 @@
         setTimeout(() => { c("name").style.opacity = "1"; }, 1200);
         setTimeout(() => { c("major").style.opacity = "1"; }, 1400);
         setTimeout(() => { c("badge").style.opacity = "1"; }, 1600);
-
-        // Pindah halaman
-        setTimeout(() => {
-            document.getElementById("cardPage").classList.add("hidden");
-            document.getElementById("menuPage").classList.remove("hidden");
-        }, 5000);
     };
 
+    function goToMenu() {
+        document.getElementById("cardPage").classList.add("hidden");
+        document.getElementById("menuPage").classList.remove("hidden");
+    }
 
-    // Navigasi
+   
     function showContent(type) {
         document.getElementById("menuPage").classList.add("hidden");
 
@@ -365,6 +370,7 @@
         }
     }
 
+ 
     function backToMenu() {
         document.getElementById("visiPage").classList.add("hidden");
         document.getElementById("misiPage").classList.add("hidden");
